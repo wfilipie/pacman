@@ -8,11 +8,13 @@ class Game {
 public:
     Game(BoardElements *board, GameState *gameState);
     void runOnce();
+    void playerMoved(char playerMove, int playerIndex);
     GameState *gameState;
 private:
     BoardElements *board;
     void moveGhost(int ghostIndex);
     bool isFieldFreeForGhost(ElementType elementType);
+    bool isFieldFreeForPlayer(ElementType elementType);
 };
 
 #endif // GAME_H

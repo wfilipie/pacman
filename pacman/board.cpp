@@ -13,7 +13,9 @@ Board::Board(QGraphicsScene *scene)
     this->scene = scene;
 }
 
-void Board::drawInitialBoard(BoardElements *boardElements){
+void Board::drawInitialBoard(BoardElements *boardElements, IPlayerMoveHandler *playerMoveHandler, int playerNumber){
+    this->playerNumber = playerNumber;
+
     for (int x=0; x<BOARD_SIZE; x++) {
         for (int y=0; y<BOARD_SIZE ; y++) {
             ElementType elementType = boardElements->get(x,y);
@@ -23,7 +25,7 @@ void Board::drawInitialBoard(BoardElements *boardElements){
         }
     }
 
-    drawInitialPlayers();
+    drawInitialPlayers(playerMoveHandler);
     drawInitialGhosts();
 }
 
@@ -40,10 +42,13 @@ void Board::putWallOnBoard(int x, int y) {
     scene->addItem(wall);
 }
 
-void Board::drawInitialPlayers()
+void Board::drawInitialPlayers(IPlayerMoveHandler *playerMoveHandler)
 {
-    Player *player1 = new Player();
-    Player *player2 = new Player();
+    Player *player1 = new Player(playerMoveHandler);
+    Player *player2 = new Player(playerMoveHandler);
+
+    player1->setFlag(QGraphicsItem::ItemIsFocusable);
+    player1->setFocus();
 
     player1->init();
     player2->init();

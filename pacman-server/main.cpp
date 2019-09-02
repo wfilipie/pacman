@@ -30,12 +30,14 @@ int main(int argc, char *argv[]) {
     GameState *gameState = new GameState();
     buildGameState(gameState, boardElements);
 
+    client1->sendPlayerNumber(0);
     client1->sendBoard(boardElements);
     client1->sendGameState(gameState);
 
     Game *game = new Game(boardElements, gameState);
 
     Scheduler *scheduler = new Scheduler(game, client1, client1);
+    scheduler->run();
 
     return a.exec();
 }

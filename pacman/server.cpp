@@ -29,11 +29,20 @@ Server::~Server() {
     cout << "Socket closed." << endl << endl;
 }
 
+int Server::receivePlayerNumber() {
+    char receivedPlayerNumber[1];
+    recv(serverHandler, receivedPlayerNumber, sizeof(receivedPlayerNumber), 0);
+    return (int) receivedPlayerNumber[0];
+}
+
 void Server::receiveInitialBoard(BoardElements *boardElements) {
     recv(serverHandler, boardElements->elements, sizeof(boardElements->elements), 0);
 }
 
-void Server::receiveGameState(GameState *gameState)
-{
+void Server::receiveGameState(GameState *gameState) {
     recv(serverHandler, gameState->state, sizeof(gameState->state), 0);
+}
+
+void Server::sendPlayerMove(char playerMove) {
+    send(serverHandler, &playerMove, sizeof(playerMove), 0);
 }

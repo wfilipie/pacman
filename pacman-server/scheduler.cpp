@@ -15,5 +15,7 @@ Scheduler::Scheduler(Game *game, Client *client1, Client *client2) {
 
 void Scheduler::run() {
     game->runOnce();
+    char player1Move = client1->recievePlayerMove();
+    game->playerMoved(player1Move, 0);
     client1->sendGameState(game->gameState);
 }

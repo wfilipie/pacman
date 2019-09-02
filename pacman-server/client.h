@@ -9,8 +9,10 @@ class Client {
 public:
     Client(int port);
     ~Client();
+    void sendPlayerNumber(int playerNumber);
     void sendBoard(BoardElements *boardElements);
     void sendGameState(GameState *gameState);
+    char recievePlayerMove();
 private:
     SOCKET clientHandler;
     char buffer[1024];

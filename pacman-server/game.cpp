@@ -1,5 +1,6 @@
 #include "game.h"
 #include <stdlib.h>
+#include <QDebug>
 
 Game::Game(BoardElements *board, GameState *gameState) {
     this->board = board;
@@ -10,6 +11,38 @@ void Game::runOnce() {
     moveGhost(0);
     moveGhost(1);
     moveGhost(2);
+}
+
+void Game::playerMoved(char playerMove, int playerIndex) {
+    qDebug() << "Player moved: " << playerMove;
+
+    int playerX = gameState->getPlayerX(playerIndex);
+    int playerY = gameState->getPlayerY(playerIndex);
+
+    ElementType elementAbove = board->get(playerX, playerY-1);
+    ElementType elementBelow = board->get(playerX, playerY+1);
+    ElementType elementRight = board->get(playerX+1, playerY);
+    ElementType elementLeft = board->get(playerX-1, playerY);
+
+    int newX = playerX;
+    int newY = playerY;
+
+    if(isFieldFreeForPlayer(elementAbove) && playerMove == 'u'){
+        newY -= 1;
+    }
+    if(isFieldFreeForPlayer(elementBelow) && playerMove == 'd'){
+        newY += 1;
+    }
+    if(isFieldFreeForPlayer(elementRight) && playerMove == 'r'){
+        newX += 1;
+    }
+    if(isFieldFreeForPlayer(elementLeft) && playerMove == 'l'){
+        newX -= 1;
+    }
+
+    gameState->setPlayerPosition(newX, newY, playerIndex);
+    board->set(playerX, playerY, EMPTY);
+    board->set(newX, newY, PLAYER);
 }
 
 void Game::moveGhost(int ghostIndex) {
@@ -65,4 +98,8 @@ void Game::moveGhost(int ghostIndex) {
 
 bool Game::isFieldFreeForGhost(ElementType elementType) {
     return (elementType != WALL && elementType != GHOST);
+}
+
+bool Game::isFieldFreeForPlayer(ElementType elementType) {
+    return (elementType != WALL && elementType != PLAYER);
 }

@@ -42,10 +42,22 @@ Client::~Client() {
     cout << "Client disconnected." << endl;
 }
 
+void Client::sendPlayerNumber(int playerNumber) {
+    char playerNumberToSend[1];
+    playerNumberToSend[0] = (char) playerNumber;
+    send(clientHandler, playerNumberToSend, sizeof(playerNumberToSend), 0);
+}
+
 void Client::sendBoard(BoardElements *boardElements) {
     send(clientHandler, boardElements->elements, sizeof(boardElements->elements), 0);
 }
 
 void Client::sendGameState(GameState *gameState) {
     send(clientHandler, gameState->state, sizeof(gameState->state), 0);
+}
+
+char Client::recievePlayerMove() {
+    char playerMove;
+    recv(clientHandler, &playerMove, sizeof(playerMove), 0);
+    return playerMove;
 }
