@@ -11,7 +11,10 @@ public:
     int getGhostX(int ghostIndex);
     int getGhostY(int ghostIndex);
 
-    char state[10];
+    void setScore(int score, int playerIndex);
+    int getScore(int playerIndex);
+
+    char state[12];
 };
 
 #endif // GAMESTATE_H

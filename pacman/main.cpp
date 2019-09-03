@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     QGraphicsView *view = new QGraphicsView(scene);
     view->show();
     view->setFixedSize(600, 600);
-    scene->setSceneRect(50, 50, 500, 500);
+    scene->setSceneRect(0, -5, 500, 500);
 
     Board *board = new Board(scene);
     Game *game = new Game(server, board);

@@ -3,6 +3,8 @@
 
 #include <QGraphicsRectItem>
 
+#define WALL_SIZE 30
+
 class Wall: public QGraphicsRectItem {
 };
 

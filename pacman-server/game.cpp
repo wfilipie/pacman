@@ -14,7 +14,6 @@ void Game::runOnce() {
 }
 
 void Game::playerMoved(char playerMove, int playerIndex) {
-    qDebug() << "Player moved: " << playerMove;
 
     int playerX = gameState->getPlayerX(playerIndex);
     int playerY = gameState->getPlayerY(playerIndex);
@@ -43,6 +42,12 @@ void Game::playerMoved(char playerMove, int playerIndex) {
     gameState->setPlayerPosition(newX, newY, playerIndex);
     board->set(playerX, playerY, EMPTY);
     board->set(newX, newY, PLAYER);
+
+    if(board->get(newX, newY) == SCORE) {
+        board->set(newX, newY, EMPTY);
+        int score = gameState->getScore(playerIndex);
+        gameState->setScore(score + 1, playerIndex);
+    }
 }
 
 void Game::moveGhost(int ghostIndex) {

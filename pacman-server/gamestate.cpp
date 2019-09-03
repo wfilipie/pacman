@@ -32,3 +32,13 @@ int GameState::getGhostY(int ghostIndex)
     return state[ghostIndex*2 + 5];
 }
 
+void GameState::setScore(int score, int playerIndex)
+{
+    state[playerIndex + 10] = score;
+}
+
+int GameState::getScore(int playerIndex)
+{
+    return state[playerIndex + 10];
+}
+

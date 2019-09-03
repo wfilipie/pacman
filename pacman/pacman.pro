@@ -36,7 +36,8 @@ SOURCES += \
     boardelements.cpp \
     wall.cpp \
     gamestate.cpp \
-    scheduler.cpp
+    scheduler.cpp \
+    score.cpp
 
 HEADERS += \
     console.h \
@@ -51,7 +52,8 @@ HEADERS += \
     wall.h \
     gamestate.h \
     scheduler.h \
-    iplayermovehandler.h
+    iplayermovehandler.h \
+    score.h
 
 LIBS += C:\Qt\Tools\mingw730_64\x86_64-w64-mingw32\lib\libws2_32.a
 
