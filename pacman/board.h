@@ -16,6 +16,8 @@ public:
     Board(QGraphicsScene *scene);
     void drawInitialBoard(BoardElements *boardElements, IPlayerMoveHandler *playerMoveHandler, int playerNumber);
     void gameStateChanged(GameState *gameState);
+    Player** getPlayers();
+    Ghost** getGhosts();
 private:
     BoardElements *boardElements;
     Player *players[2];

@@ -38,7 +38,8 @@ SOURCES += \
     scheduler.cpp \
     score.cpp \
     scorebar.cpp \
-    winnertext.cpp
+    winnertext.cpp \
+    gamestatistics.cpp
 
 HEADERS += \
     server.h \
@@ -55,7 +56,8 @@ HEADERS += \
     iplayermovehandler.h \
     score.h \
     scorebar.h \
-    winnertext.h
+    winnertext.h \
+    gamestatistics.h
 
 LIBS += C:\Qt\Tools\mingw730_64\x86_64-w64-mingw32\lib\libws2_32.a
 

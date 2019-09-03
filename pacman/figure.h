@@ -8,8 +8,6 @@ class Figure: public QGraphicsRectItem {
 public:
     void init();
     void setPosition(int x, int y);
-
-private:
     int x;
     int y;
 };

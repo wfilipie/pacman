@@ -17,6 +17,7 @@ private:
     GameState *gameState;
     char playerMove;
     int playerNumber;
+    void printStatistics();
 };
 
 #endif // GAME_H

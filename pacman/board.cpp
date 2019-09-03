@@ -169,6 +169,14 @@ void Board::gameStateChanged(GameState *gameState) {
     removeScores(gameState);
 }
 
+Player **Board::getPlayers() {
+    return players;
+}
+
+Ghost **Board::getGhosts() {
+    return ghosts;
+}
+
 void Board::removeScores(GameState *gameState) {
     int player1XPosition = gameState->getPlayerX(0);
     int player1YPosition = gameState->getPlayerY(0);
