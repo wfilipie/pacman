@@ -32,6 +32,7 @@ private:
     void putScoreOnBoard(int x, int y);
     void removeScores(GameState *gameState);
     void drawScoreBars();
+    void checkWinner(GameState *gameState);
 };
 
 #endif // BOARD_H

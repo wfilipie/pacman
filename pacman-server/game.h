@@ -15,6 +15,8 @@ private:
     void moveGhost(int ghostIndex);
     bool isFieldFreeForGhost(ElementType elementType);
     bool isFieldFreeForPlayer(ElementType elementType);
+    void checkGameOver();
+    void gameOver();
 };
 
 #endif // GAME_H

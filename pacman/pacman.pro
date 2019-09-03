@@ -26,7 +26,6 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    console.cpp \
     server.cpp \
     player.cpp \
     figure.cpp \
@@ -38,10 +37,10 @@ SOURCES += \
     gamestate.cpp \
     scheduler.cpp \
     score.cpp \
-    scorebar.cpp
+    scorebar.cpp \
+    winnertext.cpp
 
 HEADERS += \
-    console.h \
     server.h \
     player.h \
     figure.h \
@@ -55,7 +54,8 @@ HEADERS += \
     scheduler.h \
     iplayermovehandler.h \
     score.h \
-    scorebar.h
+    scorebar.h \
+    winnertext.h
 
 LIBS += C:\Qt\Tools\mingw730_64\x86_64-w64-mingw32\lib\libws2_32.a
 

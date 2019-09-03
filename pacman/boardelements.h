@@ -1,5 +1,5 @@
-#ifndef BOARDELEMENT_H
-#define BOARDELEMENT_H
+#ifndef BOARDELEMENTS_H
+#define BOARDELEMENTS_H
 
 #define BOARD_SIZE 15
 

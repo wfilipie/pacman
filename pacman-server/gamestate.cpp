@@ -4,6 +4,7 @@ GameState::GameState()
 {
     setScore(0, 0);
     setScore(0, 1);
+    state[12] = -1;
 }
 
 void GameState::setPlayerPosition(int x, int y, int playerIndex)
@@ -46,5 +47,15 @@ void GameState::setScore(int score, int playerIndex)
 int GameState::getScore(int playerIndex)
 {
     return state[playerIndex + 10];
+}
+
+void GameState::setWinner(int playerIndex)
+{
+    state[12] = playerIndex;
+}
+
+int GameState::getWinner()
+{
+    return state[12];
 }
 

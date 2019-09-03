@@ -5,6 +5,7 @@
 #include "wall.h"
 #include "gamestate.h"
 #include "score.h"
+#include "winnertext.h"
 
 Board::Board(QGraphicsScene *scene)
 {
@@ -160,10 +161,10 @@ void Board::gameStateChanged(GameState *gameState) {
     int player1Score = gameState->getScore(0);
     int player2Score = gameState->getScore(1);
 
-    qDebug() << "Player 1 Score: " << player1Score;
-
     scoreBars[0]->setScore(player1Score);
     scoreBars[1]->setScore(player2Score);
+
+    checkWinner(gameState);
 
     removeScores(gameState);
 }
@@ -185,8 +186,7 @@ void Board::removeScores(GameState *gameState) {
     }
 }
 
-void Board::drawScoreBars()
-{
+void Board::drawScoreBars() {
     ScoreBar *player1ScoreBar = new ScoreBar();
     ScoreBar *player2ScoreBar = new ScoreBar();
 
@@ -201,4 +201,22 @@ void Board::drawScoreBars()
 
     scoreBars[0] = player1ScoreBar;
     scoreBars[1] = player2ScoreBar;
+}
+
+void Board::checkWinner(GameState *gameState) {
+    int winnerPlayer = gameState->getWinner();
+
+    if(winnerPlayer > -1) {
+        WinnerText *winner = new WinnerText();
+        scene->addItem(winner);
+        winner->setPos(150, -50);
+
+        if(winnerPlayer == 0) {
+            winner->setWinner(1);
+        } else if(winnerPlayer == 1) {
+            winner->setWinner(2);
+        } else if(winnerPlayer == 2) {
+            winner->setWinner(3);
+        }
+    }
 }

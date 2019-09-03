@@ -14,7 +14,10 @@ public:
     void setScore(int score, int playerIndex);
     int getScore(int playerIndex);
 
-    char state[12];
+    void setWinner(int playerIndex);
+    int getWinner();
+
+    char state[13];
 };
 
 #endif // GAMESTATE_H
