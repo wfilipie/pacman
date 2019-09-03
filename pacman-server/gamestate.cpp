@@ -1,5 +1,11 @@
 #include "gamestate.h"
 
+GameState::GameState()
+{
+    setScore(0, 0);
+    setScore(0, 1);
+}
+
 void GameState::setPlayerPosition(int x, int y, int playerIndex)
 {
     state[playerIndex*2] = x;

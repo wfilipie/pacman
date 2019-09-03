@@ -17,6 +17,7 @@ void Board::drawInitialBoard(BoardElements *boardElements, IPlayerMoveHandler *p
     drawInitialWallsAndScores(boardElements);
     drawInitialPlayers(playerMoveHandler);
     drawInitialGhosts();
+    drawScoreBars();
 }
 
 void Board::drawInitialWallsAndScores(BoardElements *boardElements) {
@@ -136,14 +137,6 @@ void Board::gameStateChanged(GameState *gameState) {
 
     players[0]->setPosition(player1XPosition, player1YPosition);
 
-    if(player1XPosition == 13 && player1YPosition == 12) {
-        qDebug() << "Player over player.";
-        a = true;
-    }
-    if(a) {
-        qDebug() << "Player position: [" << player1XPosition << "," << player1YPosition << "]";
-    }
-
     int player2XPosition = gameState->getPlayerX(1);
     int player2YPosition = gameState->getPlayerY(1);
 
@@ -164,6 +157,14 @@ void Board::gameStateChanged(GameState *gameState) {
 
     ghosts[2]->setPosition(ghost3XPosition, ghost3YPosition);
 
+    int player1Score = gameState->getScore(0);
+    int player2Score = gameState->getScore(1);
+
+    qDebug() << "Player 1 Score: " << player1Score;
+
+    scoreBars[0]->setScore(player1Score);
+    scoreBars[1]->setScore(player2Score);
+
     removeScores(gameState);
 }
 
@@ -182,4 +183,22 @@ void Board::removeScores(GameState *gameState) {
             }
         }
     }
+}
+
+void Board::drawScoreBars()
+{
+    ScoreBar *player1ScoreBar = new ScoreBar();
+    ScoreBar *player2ScoreBar = new ScoreBar();
+
+    scene->addItem(player1ScoreBar);
+    scene->addItem(player2ScoreBar);
+
+    player1ScoreBar->setPos(0, -60);
+    player2ScoreBar->setPos(0, -35);
+
+    player1ScoreBar->setPlayer(0);
+    player2ScoreBar->setPlayer(1);
+
+    scoreBars[0] = player1ScoreBar;
+    scoreBars[1] = player2ScoreBar;
 }

@@ -8,6 +8,7 @@
 #include "gamestate.h"
 #include "iplayermovehandler.h"
 #include "score.h"
+#include "scorebar.h"
 #include <QGraphicsScene>
 
 class Board {
@@ -20,6 +21,7 @@ private:
     Player *players[2];
     Ghost *ghosts[3];
     Score *scores[100];
+    ScoreBar *scoreBars[2];
     int scoresIndex = 0;
     QGraphicsScene *scene;
     int playerNumber;
@@ -29,6 +31,7 @@ private:
     void drawInitialGhosts();
     void putScoreOnBoard(int x, int y);
     void removeScores(GameState *gameState);
+    void drawScoreBars();
 };
 
 #endif // BOARD_H

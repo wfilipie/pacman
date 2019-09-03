@@ -3,6 +3,8 @@
 
 class GameState {
 public:
+    GameState();
+
     void setPlayerPosition(int x, int y, int playerIndex);
     int getPlayerX(int playerIndex);
     int getPlayerY(int playerIndex);
